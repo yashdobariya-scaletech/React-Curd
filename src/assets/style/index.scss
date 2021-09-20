@@ -1,0 +1,110 @@
+
+.header{
+    background-color: $light-yellow;
+    padding: 1px 15px ;
+    position: sticky;
+    top: 0;
+}
+
+
+    .form-wrap{
+        padding: 50px;
+        margin: 0 auto;
+        margin-top: 50px;
+        width: 60%;
+        background-color: $green;
+        color: white;
+
+        .form{
+
+            .input-wrap{
+                display: flex;
+            }
+
+            .form-item{
+                padding: 20px;
+
+                label{
+                    font-size: 20px;
+                    display: block;
+                    margin-bottom: 10px;
+                }
+
+                input{
+                    padding: 10px;
+                    font-size: 16px;
+                    border: none;
+                    outline: none;
+                }
+
+                .form-item--bigWidth{
+                    width: 95%;
+                }
+
+                select{
+                    font-size: 16px;
+                    padding: 10px;
+                    outline: none;
+                    width: 100%;
+                }
+
+                textarea{
+                    width: 100%;
+                    resize: vertical;
+                    outline: none;
+                    font-size: 16px;
+                }
+            }
+
+            .form-item--radio{
+                padding: 20px;
+                
+                label{
+                    font-size: 20px;
+                }
+            }
+
+            .btn-wrap{
+                text-align: left;
+                padding: 20px;
+
+                button{
+                    padding: 10px 30px;
+                    margin-left:10px;
+                    font-size: 16px;
+                    // background-color: rgb(236, 152, 152);
+                    border: none;
+                    cursor: pointer;
+                }
+            }
+        }
+    }
+
+
+.form-data-table{
+    background-color: $light-green;
+    padding: 50px;
+    margin-top: 50px;
+
+    table{
+        color: $white;
+        width: 100%;
+        border-collapse: collapse;
+        
+        caption{
+            font-size: 30px;
+            font-weight: 600;
+            padding: 50px;
+            color: $black;
+        }
+
+        th{
+            // border: 2px solid #262223;
+            background-color: $black;
+            text-align: center;
+            padding: 20px;
+            font-size: 20px;
+        }
+    }
+
+}
