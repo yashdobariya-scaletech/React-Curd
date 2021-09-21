@@ -7,10 +7,10 @@ export default function CheckboxInput(props) {
         <label className="">{props.lable}</label>
         <label className="ml mt">
           <input
+            checked={props.fieldValue.sunroof}
             name="sunroof"
             type="checkbox"
-            onChange={(e) => this.updateInputField(props.fieldName, e)}
-            checked={""}
+            onChange={(e) => props.updateInputField(props.fieldName, e)}
           />
           Sunroof
         </label>
@@ -19,9 +19,8 @@ export default function CheckboxInput(props) {
           <input
             name="navigationSystem"
             type="checkbox"
-            id=""
-            onChange={(e) => this.updateInputField(props.fieldName, e)}
-            checked={""}
+            onChange={(e) => props.updateInputField(props.fieldName, e)}
+            checked={props.fieldValue.navigationSystem}
           />
           Navigation System
         </label>
@@ -30,9 +29,8 @@ export default function CheckboxInput(props) {
           <input
             name="remoteStart"
             type="checkbox"
-            id=""
-            onChange={(e) => this.updateInputField(props.fieldName, e)}
-            checked={""}
+            onChange={(e) => props.updateInputField(props.fieldName, e)}
+            checked={props.fieldValue.remoteStart}
           />
           Remote Start
         </label>
@@ -41,9 +39,8 @@ export default function CheckboxInput(props) {
           <input
             name="abs"
             type="checkbox"
-            id=""
-            onChange={(e) => this.updateInputField(props.fieldName, e)}
-            checked={""}
+            onChange={(e) => props.updateInputField(props.fieldName, e)}
+            checked={props.fieldValue.abs}
           />
           ABS
         </label>
@@ -52,9 +49,8 @@ export default function CheckboxInput(props) {
           <input
             name="appleAndroid"
             type="checkbox"
-            id=""
-            onChange={(e) => this.updateInputField(props.fieldName, e)}
-            checked={""}
+            onChange={(e) => props.updateInputField(props.fieldName, e)}
+            checked={props.fieldValue.appleAndroid}
           />
           Apple Carplay and Android Auto
         </label>

@@ -7,19 +7,9 @@ import Button from "./Button";
 import React from "react";
 
 export default function Form(props) {
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    console.log(e, "call");
-  };
-
   return (
     <div className="form-wrap">
-      <form
-        className="form"
-        onSubmit={(e) => {
-          handleSubmit(e);
-        }}
-      >
+      <form className="form" onSubmit={props.onSubmit}>
         <div className="input-wrap">
           <TextInput
             lable="Company Name"
@@ -33,30 +23,29 @@ export default function Form(props) {
             fieldValue={props.data.modelName}
             updateInputField={props.updateInputField}
           />
-          {/* <TextInput fieldname="Model Name:" /> */}
         </div>
         <Dropdown
           lable="Choose a car type:"
           fieldName="carType"
-          fieldValue={props.data.carName}
+          fieldValue={props.data.carType}
           updateInputField={props.updateInputField}
         />
         <RadioButton
           lable="Type Of Car Fuel"
           fieldName="carFule"
-          fieldValue={props.data.carName}
+          fieldValue={props.data.carFule}
           updateInputField={props.updateInputField}
         />
         <CheckboxInput
           lable="Car Features List"
           fieldName="featureList"
-          fieldValue={props.data.carName}
+          fieldValue={props.data.featureList}
           updateInputField={props.updateInputField}
         />
         <Textarea
           lable="Car Overview"
           fieldName="carOverview"
-          fieldValue={props.data.carName}
+          fieldValue={props.data.carOverview}
           updateInputField={props.updateInputField}
         />
         <Button />

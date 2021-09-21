@@ -5,8 +5,8 @@ export default function Dropdown(props) {
     <div className="form-item">
       <label htmlFor="">{props.lable}</label>
       <select
-        value={props.fieldName}
-        onChange={(e) => this.updateInputField(props.fieldName, e)}
+        value={props.fieldValue}
+        onChange={(e) => props.updateInputField(props.fieldName, e)}
       >
         <option value="hatchback">Hatchback</option>
         <option value="sedan">Sedan</option>

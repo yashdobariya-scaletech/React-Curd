@@ -6,7 +6,7 @@ export default function Textarea(props) {
       <div className="form-item ">
         <label>{props.lable}</label>
         <textarea
-          value={props.fieldName}
+          value={props.fieldValue}
           onChange={(e) => props.updateInputField(props.fieldName, e)}
           rows="5"
           cols="30"

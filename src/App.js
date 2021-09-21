@@ -2,35 +2,75 @@ import { Component } from "react";
 import "../src/assets/style/app.scss";
 import Form from "./components/Form";
 import Header from "./components/Header";
+import Table from "./components/Table";
 
 class App extends Component {
   constructor(props) {
     super(props);
-
     this.state = {
       carsList: [],
       carData: {
         carName: "",
         modelName: "",
         carType: "",
-        carFule: "",
-        featureList: [],
+        carFule: {
+          petrol: false,
+          diesel: false,
+          electric: false,
+        },
+        featureList: {
+          sunroof: false,
+          navigationSystem: false,
+          remoteStart: false,
+          abs: false,
+          appleAndroid: false,
+        },
         carOverview: "",
       },
     };
   }
 
-  handleCarList = (list) => {
+  carListHandle = (list) => {
     console.log(list);
   };
 
+  submitHandle = (e) => {
+    e.preventDefault();
+    const carData = { ...this.state.carData };
+    const carsList = [...this.state.carsList];
+    carsList.push(carData);
+    this.setState({
+      carsList,
+    });
+    console.log(carsList[0].carName, "carname");
+  };
+
   updateInputField = (fieldname, e) => {
-    console.log(fieldname, e.target.value);
-    // this.setState({
-    //   // carName: value,
-    //   modelName: value,
-    //   // carType: value,
-    // });
+    const carData = { ...this.state.carData };
+    const target = e.target;
+    let name = target.name;
+    const value = target.value;
+    const isCheked = target.checked;
+
+    if (
+      target.type === "text" ||
+      target.type === "textarea" ||
+      target.type === "select-one"
+    ) {
+      carData[fieldname] = value;
+    }
+
+    if (target.type === "checkbox") {
+      carData.featureList[name] = isCheked;
+    }
+
+    if (target.type === "radio") {
+      carData.carFule[value] = isCheked;
+    }
+
+    this.setState({
+      carData,
+    });
   };
 
   render() {
@@ -40,12 +80,9 @@ class App extends Component {
         <Form
           updateInputField={this.updateInputField}
           data={this.state.carData}
-          // carName={this.state.carData.carName}
-          // modelName={this.state.carData.modelName}
-          // carType={this.state.carData.carType}
-          // featureList={this.state.carData.featureList}
-          // carOverview={this.state.carData.carOverview}
+          onSubmit={this.submitHandle}
         />
+        <Table data={this.state.carsList} />
       </div>
     );
   }
