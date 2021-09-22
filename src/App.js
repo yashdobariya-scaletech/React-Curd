@@ -17,6 +17,15 @@ class App extends Component {
         featureList: [],
         carOverview: "",
       },
+      errorField: "",
+      checkErrorField: {
+        carName: false,
+        modelName: false,
+        carType: false,
+        carFule: false,
+        featureList: false,
+        carOverview: false,
+      },
     };
   }
 
@@ -43,13 +52,26 @@ class App extends Component {
     // });
   };
 
+  validateInputField = (fieldname, e) => {
+    const isValid = e.target.value.trim() !== "";
+    console.log(isValid, "isvalid");
+
+    this.setState({
+      checkErrorField: {
+        ...this.state.checkErrorField,
+        [fieldname]: isValid,
+        errorField: isValid ? "please enter valid input" : "",
+      },
+    });
+  };
+
   updateInputField = (fieldname, e) => {
+    console.log("UPDATE");
     const carData = { ...this.state.carData };
     const target = e.target;
     let name = target.name;
     const value = target.value;
-    // const isCheked = target.checked;
-
+    this.validateInputField(fieldname, e);
     if (
       target.type === "text" ||
       target.type === "textarea" ||
@@ -76,6 +98,8 @@ class App extends Component {
           updateInputField={this.updateInputField}
           data={this.state.carData}
           onSubmit={this.submitHandle}
+          errorField={this.state.errorField}
+          checkErrorField={this.state.checkErrorField}
         />
         <Table data={this.state.carsList} />
       </div>
