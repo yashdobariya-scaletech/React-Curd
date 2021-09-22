@@ -37,12 +37,21 @@ class App extends Component {
     e.preventDefault();
     const carData = { ...this.state.carData };
     const carsList = [...this.state.carsList];
-    carsList.push(carData);
+    const checkErrorField = { ...this.state.checkErrorField };
+
+    const validateForm = Object.values(checkErrorField).forEach(
+      (val) => val === true
+    );
+    console.log(validateForm, "ho");
+
+    if (this.state.formIsValidate) {
+      carsList.push(carData);
+    }
     this.setState({
       carsList,
     });
 
-    console.log(carsList);
+    console.log(this.state.checkErrorField, "fe");
 
     // Object.entries(carsList[0].carFule).forEach(([key, value]) => {
     //   // console.log(`${key}: ${value}`, "CARfULE");
@@ -54,19 +63,21 @@ class App extends Component {
 
   validateInputField = (fieldname, e) => {
     const isValid = e.target.value.trim() !== "";
-    console.log(isValid, "isvalid");
 
+    // const isEmpty = { ...(this.state.carData.featureList === 0) };
+    // console.log(isEmpty, "empty");
+    // console.log(isValid, "isvalid");
     this.setState({
       checkErrorField: {
         ...this.state.checkErrorField,
         [fieldname]: isValid,
-        errorField: isValid ? "please enter valid input" : "",
+        errorField: isValid ? "" : "please enter valid input",
       },
     });
   };
 
   updateInputField = (fieldname, e) => {
-    console.log("UPDATE");
+    // console.log("UPDATE");
     const carData = { ...this.state.carData };
     const target = e.target;
     let name = target.name;

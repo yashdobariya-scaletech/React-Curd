@@ -19,7 +19,8 @@ export default function Form(props) {
           />
           {
             <p className="error">
-              {props.checkErrorField.carName && props.errorField}
+              {!props.checkErrorField.carName &&
+                props.checkErrorField.errorField}
             </p>
           }
           <TextInput
@@ -30,7 +31,8 @@ export default function Form(props) {
           />
           {
             <p className="error">
-              {props.checkErrorField.modelName && props.errorField}
+              {!props.checkErrorField.modelName &&
+                props.checkErrorField.errorField}
             </p>
           }
         </div>
@@ -42,7 +44,7 @@ export default function Form(props) {
         />
         {
           <p className="error">
-            {props.checkErrorField.carType && props.errorField}
+            {!props.checkErrorField.carType && props.checkErrorField.errorField}
           </p>
         }
 
@@ -54,7 +56,7 @@ export default function Form(props) {
         />
         {
           <p className="error">
-            {props.checkErrorField.carFule && props.errorField}
+            {!props.checkErrorField.carFule && props.checkErrorField.errorField}
           </p>
         }
 
@@ -66,7 +68,8 @@ export default function Form(props) {
         />
         {
           <p className="error">
-            {props.checkErrorField.featureList && props.errorField}
+            {!props.checkErrorField.featureList &&
+              props.checkErrorField.errorField}
           </p>
         }
 
@@ -78,7 +81,8 @@ export default function Form(props) {
         />
         {
           <p className="error">
-            {props.checkErrorField.carOverview && props.errorField}
+            {!props.checkErrorField.carOverview &&
+              props.checkErrorField.errorField}
           </p>
         }
 
