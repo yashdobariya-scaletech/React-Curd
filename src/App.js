@@ -13,18 +13,8 @@ class App extends Component {
         carName: "",
         modelName: "",
         carType: "",
-        carFule: {
-          petrol: false,
-          diesel: false,
-          electric: false,
-        },
-        featureList: {
-          sunroof: false,
-          navigationSystem: false,
-          remoteStart: false,
-          abs: false,
-          appleAndroid: false,
-        },
+        carFule: "",
+        featureList: [],
         carOverview: "",
       },
     };
@@ -42,7 +32,15 @@ class App extends Component {
     this.setState({
       carsList,
     });
-    console.log(carsList[0].carName, "carname");
+
+    console.log(carsList);
+
+    // Object.entries(carsList[0].carFule).forEach(([key, value]) => {
+    //   // console.log(`${key}: ${value}`, "CARfULE");
+    //   if (value === true) {
+    //     console.log(`${key}`, "value");
+    //   }
+    // });
   };
 
   updateInputField = (fieldname, e) => {
@@ -50,22 +48,19 @@ class App extends Component {
     const target = e.target;
     let name = target.name;
     const value = target.value;
-    const isCheked = target.checked;
+    // const isCheked = target.checked;
 
     if (
       target.type === "text" ||
       target.type === "textarea" ||
-      target.type === "select-one"
+      target.type === "select-one" ||
+      target.type === "radio"
     ) {
       carData[fieldname] = value;
     }
 
     if (target.type === "checkbox") {
-      carData.featureList[name] = isCheked;
-    }
-
-    if (target.type === "radio") {
-      carData.carFule[value] = isCheked;
+      carData.featureList.push([name]);
     }
 
     this.setState({

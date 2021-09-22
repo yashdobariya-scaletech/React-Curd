@@ -10,7 +10,7 @@ export default function RadioButton(props) {
             type="radio"
             name="carFule"
             value="petrol"
-            checked={props.fieldValue.petrol}
+            checked={props.fieldValue === "petrol"}
             onChange={(e) => props.updateInputField(props.fieldName, e)}
           />
           Petrol
@@ -20,7 +20,7 @@ export default function RadioButton(props) {
             type="radio"
             name="carFule"
             value="diesel"
-            checked={props.fieldValue.diesel}
+            checked={props.fieldValue === "diesel"}
             onChange={(e) => props.updateInputField(props.fieldName, e)}
           />
           Diesel
@@ -30,7 +30,7 @@ export default function RadioButton(props) {
             type="radio"
             name="carFule"
             value="electric"
-            checked={props.fieldValue.electric}
+            checked={props.fieldValue === "electric"}
             onChange={(e) => props.updateInputField(props.fieldName, e)}
           />
           Electric
