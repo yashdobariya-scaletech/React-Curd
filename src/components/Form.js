@@ -60,6 +60,12 @@ export default function Form(props) {
           </p>
         }
 
+        <CheckboxInput
+          lable="Car Features List"
+          fieldName="featureList"
+          fieldValue={props.data.featureList}
+          updateInputField={props.updateInputField}
+        />
         {
           <p className="error">
             {!props.checkErrorField.featureList &&

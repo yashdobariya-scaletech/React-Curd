@@ -2,7 +2,6 @@ import React from "react";
 
 export default function Button(props) {
   const isUpdate = props.isEdit;
-  console.log(isUpdate, "isUpdate");
 
   const submitButton = (
     <button type="submit" value="Submit" className="">

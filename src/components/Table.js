@@ -11,7 +11,7 @@ export default function Table(props) {
             <th>Model Name</th>
             <th>Choose a car type</th>
             <th>Type Of Car Fule</th>
-            {/* <th>Car Features List</th> */}
+            <th>Car Features List</th>
             <th>Car Overview</th>
             <th>Actions</th>
           </tr>
@@ -23,7 +23,7 @@ export default function Table(props) {
               <td>{car.modelName}</td>
               <td>{car.carType}</td>
               <td>{car.carFule}</td>
-              {/* <td>{car.featureList}</td> */}
+              <td>{car.featureList.join(", ")}</td>
               <td>{car.carOverview}</td>
               <td>
                 <button

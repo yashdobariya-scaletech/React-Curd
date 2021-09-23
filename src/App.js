@@ -12,7 +12,8 @@ class App extends Component {
       carData: {
         carName: "",
         modelName: "",
-        carType: "sport-car",
+        carType: "Sport Car",
+        featureList: [],
         carFule: "",
         carOverview: "",
       },
@@ -71,7 +72,8 @@ class App extends Component {
       carData: {
         carName: "",
         modelName: "",
-        carType: "sport-car",
+        carType: "Sport Car",
+        featureList: [],
         carFule: "",
         carOverview: "",
       },
@@ -124,6 +126,7 @@ class App extends Component {
         carName: "",
         modelName: "",
         carType: "",
+        featureList: [],
         carFule: "",
         carOverview: "",
       },
@@ -143,6 +146,7 @@ class App extends Component {
     const target = e.target;
     let name = target.name;
     const value = target.value;
+    const featureList = [...carData.featureList];
     // this.validateInputField(fieldname, e);
     if (
       target.type === "text" ||
@@ -154,10 +158,14 @@ class App extends Component {
     }
 
     if (target.type === "checkbox") {
-      console.log(value, "chek");
-      carData.featureList.push([name]);
-      // console.log(carData.featureList.length, "data");
+      if (!featureList.includes(name)) {
+        featureList.push(name);
+      } else {
+        featureList.splice(name, 1);
+      }
+      console.log(featureList, "chek");
     }
+    carData.featureList = featureList;
 
     this.setState({
       carData,

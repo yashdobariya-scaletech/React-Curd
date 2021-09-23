@@ -7,7 +7,7 @@ export default function CheckboxInput(props) {
         <label className="">{props.lable}</label>
         <label className="ml mt">
           <input
-            checked={props.fieldValue.sunroof}
+            checked={props.fieldValue.includes("sunroof")}
             name="sunroof"
             type="checkbox"
             onChange={(e) => props.updateInputField(props.fieldName, e)}
@@ -20,7 +20,7 @@ export default function CheckboxInput(props) {
             name="navigationSystem"
             type="checkbox"
             onChange={(e) => props.updateInputField(props.fieldName, e)}
-            checked={props.fieldValue.navigationSystem}
+            checked={props.fieldValue.includes("navigationSystem")}
           />
           Navigation System
         </label>
@@ -30,7 +30,7 @@ export default function CheckboxInput(props) {
             name="remoteStart"
             type="checkbox"
             onChange={(e) => props.updateInputField(props.fieldName, e)}
-            checked={props.fieldValue.remoteStart}
+            checked={props.fieldValue.includes("remoteStart")}
           />
           Remote Start
         </label>
@@ -40,7 +40,7 @@ export default function CheckboxInput(props) {
             name="abs"
             type="checkbox"
             onChange={(e) => props.updateInputField(props.fieldName, e)}
-            checked={props.fieldValue.abs}
+            checked={props.fieldValue.includes("abs")}
           />
           ABS
         </label>
@@ -50,7 +50,7 @@ export default function CheckboxInput(props) {
             name="appleAndroid"
             type="checkbox"
             onChange={(e) => props.updateInputField(props.fieldName, e)}
-            checked={props.fieldValue.appleAndroid}
+            checked={props.fieldValue.includes("appleAndroid")}
           />
           Apple Carplay and Android Auto
         </label>

@@ -8,13 +8,13 @@ export default function Dropdown(props) {
         value={props.fieldValue}
         onChange={(e) => props.updateInputField(props.fieldName, e)}
       >
-        <option value="hatchback">Hatchback</option>
-        <option value="sedan">Sedan</option>
-        <option value="mpv">MPV</option>
-        <option value="suv">SUV</option>
-        <option value="convertible">Convertible</option>
-        <option value="sport-car">Sport Car</option>
-        <option value="electric">Electric</option>
+        <option value="Hatchback">Hatchback</option>
+        <option value="Sedan">Sedan</option>
+        <option value="MPV">MPV</option>
+        <option value="SUV">SUV</option>
+        <option value="Convertible">Convertible</option>
+        <option value="Sport Car">Sport Car</option>
+        <option value="Electric">Electric</option>
       </select>
     </div>
   );
