@@ -8,7 +8,6 @@ export default function RadioButton(props) {
         <label className="ml--radio">
           <input
             type="radio"
-            name="carFule"
             value="petrol"
             checked={props.fieldValue === "petrol"}
             onChange={(e) => props.updateInputField(props.fieldName, e)}
@@ -18,7 +17,6 @@ export default function RadioButton(props) {
         <label className="ml--radio">
           <input
             type="radio"
-            name="carFule"
             value="diesel"
             checked={props.fieldValue === "diesel"}
             onChange={(e) => props.updateInputField(props.fieldName, e)}
@@ -28,7 +26,6 @@ export default function RadioButton(props) {
         <label className="ml--radio">
           <input
             type="radio"
-            name="carFule"
             value="electric"
             checked={props.fieldValue === "electric"}
             onChange={(e) => props.updateInputField(props.fieldName, e)}

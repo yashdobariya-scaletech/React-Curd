@@ -12,11 +12,12 @@ class App extends Component {
       carData: {
         carName: "",
         modelName: "",
-        carType: "",
+        carType: "sport-car",
         carFule: "",
-        featureList: [],
         carOverview: "",
       },
+      selectedIndex: "",
+      isEdit: false,
       errorField: "",
       checkErrorField: {
         carName: false,
@@ -29,29 +30,54 @@ class App extends Component {
     };
   }
 
-  carListHandle = (list) => {
-    console.log(list);
-  };
-
   submitHandle = (e) => {
     e.preventDefault();
-    const carData = { ...this.state.carData };
     const carsList = [...this.state.carsList];
-    const checkErrorField = { ...this.state.checkErrorField };
+    const carData = { ...this.state.carData };
+    const isEdit = this.state.isEdit;
+    console.log(isEdit, "is");
+    const selectedIndex = this.state.selectedIndex;
+    console.log(selectedIndex, "selectedIndex");
+    // delete checkErrorField.errorField;
+    // console.log(carData.featureList.length, "fdata");
 
-    const validateForm = Object.values(checkErrorField).forEach(
-      (val) => val === true
-    );
-    console.log(validateForm, "ho");
+    // const validateForm = Object.values(checkErrorField);
+    // const featureListValid = carData.featureList.length !== 0;
+    // console.log(featureListValid, "featureListValid");
+    // if (!featureListValid) {
+    //   console.log("if call");
+    //   // delete checkErrorField.errorField;
+    //   checkErrorField.featureList = false;
+    // }
+    // const validForm = validateForm.every((value) => {
+    //   return value === true;
+    // });
 
-    if (this.state.formIsValidate) {
+    // const validateForm = Object.values(checkErrorField).every((value) => {
+    //   return value === true;
+    // });
+    // console.log(validForm, "validForm");
+
+    // console.log(validateForm, "validateForm");
+    if (isEdit) {
+      carsList[selectedIndex] = carData;
+    } else {
       carsList.push(carData);
     }
+
     this.setState({
       carsList,
+      isEdit: false,
+      carData: {
+        carName: "",
+        modelName: "",
+        carType: "sport-car",
+        carFule: "",
+        carOverview: "",
+      },
     });
 
-    console.log(this.state.checkErrorField, "fe");
+    console.log(carsList, "carsList");
 
     // Object.entries(carsList[0].carFule).forEach(([key, value]) => {
     //   // console.log(`${key}: ${value}`, "CARfULE");
@@ -61,28 +87,63 @@ class App extends Component {
     // });
   };
 
-  validateInputField = (fieldname, e) => {
-    const isValid = e.target.value.trim() !== "";
+  // validateInputField = (fieldname, e) => {
+  //   const isValid = e.target.value.trim() !== "";
 
-    // const isEmpty = { ...(this.state.carData.featureList === 0) };
-    // console.log(isEmpty, "empty");
-    // console.log(isValid, "isvalid");
+  //   // const isEmpty = { ...(this.state.carData.featureList === 0) };
+  //   // console.log(isEmpty, "empty");
+  //   // console.log(isValid, "isvalid");
+  //   this.setState({
+  //     checkErrorField: {
+  //       ...this.state.checkErrorField,
+  //       [fieldname]: isValid,
+  //       errorField: isValid ? "" : "please enter valid input",
+  //     },
+  //   });
+  // };
+
+  editCarDataHandle = (index) => {
+    const carData = { ...this.state.carsList[index] };
+    // const selectedIndex = index;
+    // console.log(selectedIndex, "selectedIndex");
+    // console.log(carData, "carData");
+
+    // const carsList = [...this.state.carsList];
+    // carsList[selectedIndex] = carData;
+
     this.setState({
-      checkErrorField: {
-        ...this.state.checkErrorField,
-        [fieldname]: isValid,
-        errorField: isValid ? "" : "please enter valid input",
+      carData,
+      selectedIndex: index,
+      isEdit: true,
+    });
+  };
+
+  resetHandle = () => {
+    this.setState({
+      carData: {
+        carName: "",
+        modelName: "",
+        carType: "",
+        carFule: "",
+        carOverview: "",
       },
     });
   };
 
+  deleteCarDataHandle = (index) => {
+    const carsList = [...this.state.carsList];
+    carsList.splice(index, 1);
+    this.setState({
+      carsList,
+    });
+  };
+
   updateInputField = (fieldname, e) => {
-    // console.log("UPDATE");
     const carData = { ...this.state.carData };
     const target = e.target;
     let name = target.name;
     const value = target.value;
-    this.validateInputField(fieldname, e);
+    // this.validateInputField(fieldname, e);
     if (
       target.type === "text" ||
       target.type === "textarea" ||
@@ -93,7 +154,9 @@ class App extends Component {
     }
 
     if (target.type === "checkbox") {
+      console.log(value, "chek");
       carData.featureList.push([name]);
+      // console.log(carData.featureList.length, "data");
     }
 
     this.setState({
@@ -111,8 +174,14 @@ class App extends Component {
           onSubmit={this.submitHandle}
           errorField={this.state.errorField}
           checkErrorField={this.state.checkErrorField}
+          resetHandle={this.resetHandle}
+          isEdit={this.state.isEdit}
         />
-        <Table data={this.state.carsList} />
+        <Table
+          data={this.state.carsList}
+          editCarDataHandle={this.editCarDataHandle}
+          deleteCarDataHandle={this.deleteCarDataHandle}
+        />
       </div>
     );
   }
