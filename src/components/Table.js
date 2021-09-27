@@ -1,8 +1,35 @@
 import React from "react";
+import { useSelector } from "react-redux";
+import { NavLink } from "react-router-dom";
 
-export default function Table(props) {
+export default function Table() {
+  const carsData = useSelector((state) => state);
+
+  const editCarDataHandle = (index) => {
+    const carData = { ...this.state.carsList[index] };
+
+    this.setState({
+      carData,
+      selectedIndex: index,
+      isEdit: true,
+    });
+  };
+
+  const deleteCarDataHandle = (index) => {
+    const carsList = [...this.state.carsList];
+    carsList.splice(index, 1);
+    this.setState({
+      carsList,
+    });
+  };
+
   return (
     <div className="form-data-table">
+      <div className="add-button-wr">
+        <NavLink to="/form">
+          <button>Add Data </button>
+        </NavLink>
+      </div>
       <table className="table">
         <caption>Form Data</caption>
         <thead>
@@ -16,7 +43,7 @@ export default function Table(props) {
             <th>Actions</th>
           </tr>
         </thead>
-        {props.data.map((car, index) => (
+        {carsData.carsList.map((car, index) => (
           <tbody>
             <tr key={index}>
               <td>{car.carName}</td>
@@ -26,18 +53,20 @@ export default function Table(props) {
               <td>{car.featureList.join(", ")}</td>
               <td>{car.carOverview}</td>
               <td>
+                <NavLink to="/form">
+                  <button
+                    type="button"
+                    onClick={() => {
+                      editCarDataHandle(index);
+                    }}
+                  >
+                    Edit
+                  </button>
+                </NavLink>
                 <button
                   type="button"
                   onClick={() => {
-                    props.editCarDataHandle(index);
-                  }}
-                >
-                  Edit
-                </button>
-                <button
-                  type="button"
-                  onClick={() => {
-                    props.deleteCarDataHandle(index);
+                    deleteCarDataHandle(index);
                   }}
                 >
                   Delete

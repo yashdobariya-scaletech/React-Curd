@@ -1,12 +1,15 @@
 import React from "react";
+import { NavLink } from "react-router-dom";
 
 export default function Button(props) {
   const isUpdate = props.isEdit;
 
   const submitButton = (
+    // <NavLink to="/table">
     <button type="submit" value="Submit" className="">
       Submit
     </button>
+    // </NavLink>
   );
 
   const updateButton = (
