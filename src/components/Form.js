@@ -1,3 +1,6 @@
+import React, { Component } from "react";
+import { connect } from "react-redux";
+
 import TextInput from "./TextInput";
 import Dropdown from "./Dropdown";
 import RadioButton from "./RadioButton";
@@ -6,9 +9,7 @@ import Textarea from "./Textarea";
 import Button from "./Button";
 // import React from "react";
 
-import React, { Component } from "react";
-
-export default class Form extends Component {
+class Form extends Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -33,8 +34,38 @@ export default class Form extends Component {
     };
   }
 
+  // submitHandle = (e) => {
+  //   e.preventDefault();
+  //   const carsList = [...this.state.carsList];
+  //   const carData = { ...this.state.carData };
+  //   const isEdit = this.state.isEdit;
+  //   const selectedIndex = this.state.selectedIndex;
+
+  //   if (isEdit) {
+  //     carsList[selectedIndex] = carData;
+  //   } else {
+  //     carsList.push(carData);
+  //   }
+
+  //   this.setState({
+  //     carsList,
+  //     isEdit: false,
+  //     carData: {
+  //       carName: "",
+  //       modelName: "",
+  //       carType: "Sport Car",
+  //       featureList: [],
+  //       carFule: "",
+  //       carOverview: "",
+  //     },
+  //   });
+  // };
+
   submitHandle = (e) => {
     e.preventDefault();
+
+    this.props.addCarDetail();
+
     const carData = { ...this.state.carData };
     console.log(carData);
     // const carData = { ...this.state.carData };
@@ -104,10 +135,32 @@ export default class Form extends Component {
     });
   };
 
+  editCarDataHandle = (index) => {
+    this.props.updateCarDetail();
+
+    const carData = { ...this.state.carsList[index] };
+
+    this.setState({
+      carData,
+      selectedIndex: index,
+      isEdit: true,
+    });
+  };
+
+  deleteCarDataHandle = (index) => {
+    this.props.deleteCarDetail();
+
+    const carsList = [...this.state.carsList];
+    carsList.splice(index, 1);
+    this.setState({
+      carsList,
+    });
+  };
+
   render() {
     return (
       <div className="form-wrap">
-        <form className="form" onSubmit={this.submitHandle}>
+        <form className="form" onSubmit={this.submitHandle.bind(this)}>
           <div className="input-wrap">
             <TextInput
               lable="Company Name"
@@ -193,89 +246,16 @@ export default class Form extends Component {
   }
 }
 
-// export default function Form(props) {
+const mapStatetoProps = (state) => ({
+  ...state,
+});
 
-//   return (
-//     <div className="form-wrap">
-//       <form className="form" onSubmit={props.onSubmit}>
-//         <div className="input-wrap">
-//           <TextInput
-//             lable="Company Name"
-//             fieldName="carName"
-//             fieldValue={props.data.carName}
-//             updateInputField={props.updateInputField}
-//           />
-//           {
-//             <p className="error">
-//               {!props.checkErrorField.carName &&
-//                 props.checkErrorField.errorField}
-//             </p>
-//           }
-//           <TextInput
-//             lable="Model Name"
-//             fieldName="modelName"
-//             fieldValue={props.data.modelName}
-//             updateInputField={props.updateInputField}
-//           />
-//           {
-//             <p className="error">
-//               {!props.checkErrorField.modelName &&
-//                 props.checkErrorField.errorField}
-//             </p>
-//           }
-//         </div>
-//         <Dropdown
-//           lable="Choose a car type:"
-//           fieldName="carType"
-//           fieldValue={props.data.carType}
-//           updateInputField={props.updateInputField}
-//         />
-//         {
-//           <p className="error">
-//             {!props.checkErrorField.carType && props.checkErrorField.errorField}
-//           </p>
-//         }
+const DispatchProps = (dispatch) => {
+  return {
+    addCarDetail: () => dispatch({ type: "add" }),
+    updateCarDetail: () => dispatch({ type: "update" }),
+    deleteCarDetail: () => dispatch({ type: "delete" }),
+  };
+};
 
-//         <RadioButton
-//           lable="Type Of Car Fuel"
-//           fieldName="carFule"
-//           fieldValue={props.data.carFule}
-//           updateInputField={props.updateInputField}
-//         />
-//         {
-//           <p className="error">
-//             {!props.checkErrorField.carFule && props.checkErrorField.errorField}
-//           </p>
-//         }
-
-//         <CheckboxInput
-//           lable="Car Features List"
-//           fieldName="featureList"
-//           fieldValue={props.data.featureList}
-//           updateInputField={props.updateInputField}
-//         />
-//         {
-//           <p className="error">
-//             {!props.checkErrorField.featureList &&
-//               props.checkErrorField.errorField}
-//           </p>
-//         }
-
-//         <Textarea
-//           lable="Car Overview"
-//           fieldName="carOverview"
-//           fieldValue={props.data.carOverview}
-//           updateInputField={props.updateInputField}
-//         />
-//         {
-//           <p className="error">
-//             {!props.checkErrorField.carOverview &&
-//               props.checkErrorField.errorField}
-//           </p>
-//         }
-
-//         <Button resetHandle={props.resetHandle} isEdit={props.isEdit} />
-//       </form>
-//     </div>
-//   );
-// }
+export default connect(mapStatetoProps, DispatchProps)(Form);

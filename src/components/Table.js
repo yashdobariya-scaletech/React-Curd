@@ -2,26 +2,9 @@ import React from "react";
 import { useSelector } from "react-redux";
 import { NavLink } from "react-router-dom";
 
-export default function Table() {
+export default function Table(props) {
   const carsData = useSelector((state) => state);
-
-  const editCarDataHandle = (index) => {
-    const carData = { ...this.state.carsList[index] };
-
-    this.setState({
-      carData,
-      selectedIndex: index,
-      isEdit: true,
-    });
-  };
-
-  const deleteCarDataHandle = (index) => {
-    const carsList = [...this.state.carsList];
-    carsList.splice(index, 1);
-    this.setState({
-      carsList,
-    });
-  };
+  console.log(carsData.carsList, "data");
 
   return (
     <div className="form-data-table">
@@ -57,7 +40,7 @@ export default function Table() {
                   <button
                     type="button"
                     onClick={() => {
-                      editCarDataHandle(index);
+                      props.editCarDataHandle(index);
                     }}
                   >
                     Edit
@@ -66,7 +49,7 @@ export default function Table() {
                 <button
                   type="button"
                   onClick={() => {
-                    deleteCarDataHandle(index);
+                    props.deleteCarDataHandle(index);
                   }}
                 >
                   Delete
