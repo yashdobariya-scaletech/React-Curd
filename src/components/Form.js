@@ -7,6 +7,12 @@ import RadioButton from "./RadioButton";
 import CheckboxInput from "./CheckboxInput";
 import Textarea from "./Textarea";
 import Button from "./Button";
+import {
+  ADD_CARS_DETAILS,
+  UPDATE_CARS_DETAILS,
+  DELETE_CARS_DETAILS,
+} from "../store/action";
+
 // import React from "react";
 
 class Form extends Component {
@@ -34,43 +40,12 @@ class Form extends Component {
     };
   }
 
-  // submitHandle = (e) => {
-  //   e.preventDefault();
-  //   const carsList = [...this.state.carsList];
-  //   const carData = { ...this.state.carData };
-  //   const isEdit = this.state.isEdit;
-  //   const selectedIndex = this.state.selectedIndex;
-
-  //   if (isEdit) {
-  //     carsList[selectedIndex] = carData;
-  //   } else {
-  //     carsList.push(carData);
-  //   }
-
-  //   this.setState({
-  //     carsList,
-  //     isEdit: false,
-  //     carData: {
-  //       carName: "",
-  //       modelName: "",
-  //       carType: "Sport Car",
-  //       featureList: [],
-  //       carFule: "",
-  //       carOverview: "",
-  //     },
-  //   });
-  // };
-
   submitHandle = (e) => {
     e.preventDefault();
-
-    this.props.addCarDetail();
-
+    // const carsList = [...this.state.carsList];
     const carData = { ...this.state.carData };
     console.log(carData);
-    // const carData = { ...this.state.carData };
     // const isEdit = this.state.isEdit;
-    // console.log(isEdit, "is");
     // const selectedIndex = this.state.selectedIndex;
 
     // if (isEdit) {
@@ -91,7 +66,39 @@ class Form extends Component {
     //     carOverview: "",
     //   },
     // });
+    this.props.addCarDetail(carData);
   };
+
+  // submitHandle = (e) => {
+  //   e.preventDefault();
+
+  //   const carData = { ...this.state.carData };
+  //   console.log(carData);
+  //   // const carData = { ...this.state.carData };
+  //   // const isEdit = this.state.isEdit;
+  //   // console.log(isEdit, "is");
+  //   // const selectedIndex = this.state.selectedIndex;
+
+  //   // if (isEdit) {
+  //   //   carsList[selectedIndex] = carData;
+  //   // } else {
+  //   //   // carsList.push(carData);
+  //   // // }
+  //   this.props.addCarDetail();
+
+  //   // this.setState({
+  //   //   carsList,
+  //   //   isEdit: false,
+  //   //   carData: {
+  //   //     carName: "",
+  //   //     modelName: "",
+  //   //     carType: "Sport Car",
+  //   //     featureList: [],
+  //   //     carFule: "",
+  //   //     carOverview: "",
+  //   //   },
+  //   // });
+  // };
 
   resetHandle = () => {
     this.setState({
@@ -252,9 +259,9 @@ const mapStatetoProps = (state) => ({
 
 const DispatchProps = (dispatch) => {
   return {
-    addCarDetail: () => dispatch({ type: "add" }),
-    updateCarDetail: () => dispatch({ type: "update" }),
-    deleteCarDetail: () => dispatch({ type: "delete" }),
+    addCarDetail: (data) => dispatch({ type: ADD_CARS_DETAILS, carData: data }),
+    updateCarDetail: () => dispatch({ type: UPDATE_CARS_DETAILS }),
+    deleteCarDetail: () => dispatch({ type: DELETE_CARS_DETAILS }),
   };
 };
 

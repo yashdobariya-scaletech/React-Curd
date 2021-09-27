@@ -6,6 +6,7 @@ import {
 } from "./action";
 
 const crudActionReducer = (state = { carsList: [] }, action) => {
+  console.log(action, "act");
   switch (action) {
     case action.type === ADD_CARS_DETAILS:
       break;
