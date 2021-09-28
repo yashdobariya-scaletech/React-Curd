@@ -9,7 +9,7 @@ export default function Table(props) {
   return (
     <div className="form-data-table">
       <div className="add-button-wr">
-        <NavLink to="/form">
+        <NavLink to="/form/add">
           <button>Add Data </button>
         </NavLink>
       </div>
@@ -36,23 +36,21 @@ export default function Table(props) {
               <td>{car.featureList.join(", ")}</td>
               <td>{car.carOverview}</td>
               <td>
-                <NavLink to="/form">
-                  <button
-                    type="button"
-                    onClick={() => {
-                      props.editCarDataHandle(index);
-                    }}
-                  >
-                    Edit
-                  </button>
-                </NavLink>
+                <button
+                  type="button"
+                  onClick={() => {
+                    props.editCarDataHandle(index);
+                  }}
+                >
+                  <NavLink to="/form/edit">Edit</NavLink>
+                </button>
                 <button
                   type="button"
                   onClick={() => {
                     props.deleteCarDataHandle(index);
                   }}
                 >
-                  Delete
+                  <NavLink to="/table">Delete</NavLink>
                 </button>
               </td>
             </tr>

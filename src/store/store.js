@@ -5,11 +5,18 @@ import {
   DELETE_CARS_DETAILS,
 } from "./action";
 
-const crudActionReducer = (state = { carsList: [] }, action) => {
+const initialState = { carsList: [] };
+
+const crudActionReducer = (state = initialState, action) => {
   console.log(action, "act");
-  switch (action) {
-    case action.type === ADD_CARS_DETAILS:
-      break;
+  console.log(state, "sate");
+  switch (action.type) {
+    case ADD_CARS_DETAILS:
+      console.log([...state.carsList, action.carData], "log");
+      return {
+        ...state,
+        carsList: [...state.carsList, action.carData],
+      };
 
     case action.type === UPDATE_CARS_DETAILS:
       break;

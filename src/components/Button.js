@@ -5,15 +5,24 @@ export default function Button(props) {
   const isUpdate = props.isEdit;
 
   const submitButton = (
-    // <NavLink to="/table">
-    <button type="submit" value="Submit" className="">
-      Submit
+    <button
+      value="Submit"
+      onClick={(e) => {
+        props.onSubmit(e);
+      }}
+    >
+      {" "}
+      <NavLink to="/table">Submit</NavLink>
     </button>
-    // </NavLink>
   );
 
   const updateButton = (
-    <button type="submit" value="update" className="">
+    <button
+      value="Update"
+      onClick={(e) => {
+        props.onSubmit(e);
+      }}
+    >
       Update
     </button>
   );
