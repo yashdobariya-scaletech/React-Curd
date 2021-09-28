@@ -1,8 +1,8 @@
 import "../src/assets/style/app.scss";
+import { Route, Switch, Redirect } from "react-router-dom";
 import Form from "./components/Form";
 import Header from "./components/Header";
 import Table from "./components/Table";
-import { Route, Switch, Redirect, useParams } from "react-router-dom";
 
 export default function App() {
   return (

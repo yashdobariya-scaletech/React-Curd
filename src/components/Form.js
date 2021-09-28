@@ -10,7 +10,6 @@ import Button from "./Button";
 
 class Form extends Component {
   constructor(props) {
-    // console.log(props);
     super(props);
     this.state = {
       carData: {
@@ -35,10 +34,6 @@ class Form extends Component {
   }
 
   componentDidMount = () => {
-    console.log(this.props.location.pathname.includes("edit"));
-    // const paraamsIndex = this.props.match.params.id;
-    // console.log(paraamsIndex, "para in");
-
     if (this.props.location.pathname.includes("edit")) {
       const carData = this.props.carsList[this.props.match.params.id];
       console.log(carData, "cardata");
@@ -47,24 +42,13 @@ class Form extends Component {
         isEdit: true,
       });
     }
-    // const carIndex = this.props.carsList.findIndex((car) => car.id);
-    // console.log(carIndex, "carin");
   };
 
   submitHandle = (e) => {
     e.preventDefault();
-    // const carsList = [...this.state.carsList];
     const carData = { ...this.state.carData };
     console.log(carData);
     this.props.addCarDetail(carData);
-    // const isEdit = this.state.isEdit;
-    // const selectedIndex = this.state.selectedIndex;
-
-    // if (isEdit) {
-    //   carsList[selectedIndex] = carData;
-    // } else {
-    //   carsList.push(carData);
-    // }
 
     this.setState({
       isEdit: false,
@@ -87,9 +71,6 @@ class Form extends Component {
     carsList[this.props.match.params.id] = carData;
     console.log(carsList, "carsList");
     this.props.updateCarDetail(carsList);
-    // this.setState({
-    //   isEdit: false,
-    // });
   };
 
   resetHandle = () => {
