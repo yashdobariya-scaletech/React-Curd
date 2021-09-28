@@ -12,39 +12,33 @@ const crudActionReducer = (state = initialState, action) => {
   console.log(state, "sate");
   switch (action.type) {
     case ADD_CARS_DETAILS:
-      console.log([...state.carsList, action.carData], "log");
+      const carsList = [...state.carsList];
+      carsList.push(action.carData);
       return {
         ...state,
-        carsList: [...state.carsList, action.carData],
+        carsList: carsList,
       };
 
-    case action.type === UPDATE_CARS_DETAILS:
-      break;
+    case UPDATE_CARS_DETAILS:
+      // const index = state.carsList.findIndex((car) => car.id === action.id);
+      // const carsList = [...state.carsList];
+      // carsList[index] = action.carDatas;
 
-    case action.type === DELETE_CARS_DETAILS:
-      break;
+      return {
+        ...state,
+        carsList: [action.carsList],
+      };
+    case DELETE_CARS_DETAILS:
+      return {};
 
     default:
       return state;
   }
-
-  // if (action.type === "add") {
-  //   console.log("call");
-  //   return {
-  //     carsList: state.carsList.push(state),
-  //   };
-  // }
-
-  // if (action.type === "update") {
-  //   return;
-  // }
-
-  // if (action.type === "delete") {
-  // }
-
-  // return state;
 };
 
-const store = createStore(crudActionReducer);
+const store = createStore(
+  crudActionReducer,
+  window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__()
+);
 
 export default store;

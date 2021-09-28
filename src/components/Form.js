@@ -1,5 +1,5 @@
 import React, { Component, Fragment } from "react";
-import { ADD_CARS_DETAILS } from "../store/action";
+import { ADD_CARS_DETAILS, UPDATE_CARS_DETAILS } from "../store/action";
 import { connect } from "react-redux";
 import TextInput from "./TextInput";
 import Dropdown from "./Dropdown";
@@ -10,6 +10,7 @@ import Button from "./Button";
 
 class Form extends Component {
   constructor(props) {
+    // console.log(props);
     super(props);
     this.state = {
       carData: {
@@ -33,11 +34,29 @@ class Form extends Component {
     };
   }
 
+  componentDidMount = () => {
+    console.log(this.props.location.pathname.includes("edit"));
+    // const paraamsIndex = this.props.match.params.id;
+    // console.log(paraamsIndex, "para in");
+
+    if (this.props.location.pathname.includes("edit")) {
+      const carData = this.props.carsList[this.props.match.params.id];
+      console.log(carData, "cardata");
+      this.setState({
+        carData,
+        isEdit: true,
+      });
+    }
+    // const carIndex = this.props.carsList.findIndex((car) => car.id);
+    // console.log(carIndex, "carin");
+  };
+
   submitHandle = (e) => {
     e.preventDefault();
     // const carsList = [...this.state.carsList];
     const carData = { ...this.state.carData };
     console.log(carData);
+    this.props.addCarDetail(carData);
     // const isEdit = this.state.isEdit;
     // const selectedIndex = this.state.selectedIndex;
 
@@ -47,19 +66,30 @@ class Form extends Component {
     //   carsList.push(carData);
     // }
 
+    this.setState({
+      isEdit: false,
+      carData: {
+        carName: "",
+        modelName: "",
+        carType: "Sport Car",
+        featureList: [],
+        carFule: "",
+        carOverview: "",
+      },
+    });
+  };
+
+  updateHandle = (e) => {
+    e.preventDefault();
+    const carData = { ...this.state.carData };
+    console.log(carData, "cardata");
+    const carsList = this.props.carsList;
+    carsList[this.props.match.params.id] = carData;
+    console.log(carsList, "carsList");
+    this.props.updateCarDetail(carsList);
     // this.setState({
-    //   carsList,
     //   isEdit: false,
-    //   carData: {
-    //     carName: "",
-    //     modelName: "",
-    //     carType: "Sport Car",
-    //     featureList: [],
-    //     carFule: "",
-    //     carOverview: "",
-    //   },
     // });
-    this.props.addCarDetail(carData);
   };
 
   resetHandle = () => {
@@ -75,16 +105,28 @@ class Form extends Component {
     });
   };
 
-  editCarDataHandle = (index) => {
-    const carData = { ...this.state.carsList[index] };
-    this.props.updateCarDetail(carData);
+  // const editCarDataHandle = (index) => {
+  //   dispatch({ type: UPDATE_CARS_DETAILS });
+  //   const carData = { ...this.state.carsList[index] };
+  //   this.props.updateCarDetail(carData);
 
-    this.setState({
-      carData,
-      selectedIndex: index,
-      isEdit: true,
-    });
-  };
+  //   this.setState({
+  //     carData,
+  //     selectedIndex: index,
+  //     isEdit: true,
+  //   });
+  // };
+
+  // const deleteCarDataHandle = (index) => {
+  //   this.props.deleteCarDetail();
+  //   dispatch({ type: DELETE_CARS_DETAILS });
+
+  //   const carsList = [...this.state.carsList];
+  //   carsList.splice(index, 1);
+  //   this.setState({
+  //     carsList,
+  //   });
+  // };
 
   updateInputField = (fieldname, e) => {
     const carData = { ...this.state.carData };
@@ -115,18 +157,8 @@ class Form extends Component {
     });
   };
 
-  deleteCarDataHandle = (index) => {
-    this.props.deleteCarDetail();
-
-    const carsList = [...this.state.carsList];
-    carsList.splice(index, 1);
-    this.setState({
-      carsList,
-    });
-  };
-
   render() {
-    console.log(this.props.carsList, "car listy");
+    console.log(this.state.carData);
     return (
       <Fragment>
         <div className="form-wrap">
@@ -213,6 +245,7 @@ class Form extends Component {
               resetHandle={this.resetHandle}
               isEdit={this.state.isEdit}
               onSubmit={this.submitHandle}
+              onUpdate={this.updateHandle}
             />
           </form>
         </div>
@@ -228,6 +261,8 @@ const mapStatetoProps = (state) => ({
 const DispatchProps = (dispatch) => {
   return {
     addCarDetail: (data) => dispatch({ type: ADD_CARS_DETAILS, carData: data }),
+    updateCarDetail: (data) =>
+      dispatch({ type: UPDATE_CARS_DETAILS, carsList: data }),
   };
 };
 

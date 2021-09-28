@@ -1,10 +1,35 @@
 import React from "react";
 import { useSelector } from "react-redux";
 import { NavLink } from "react-router-dom";
+// import { UPDATE_CARS_DETAILS, DELETE_CARS_DETAILS } from "../store/action";
 
-export default function Table(props) {
+export default function Table() {
   const carsData = useSelector((state) => state);
-  console.log(carsData.carsList, "data");
+  console.log(carsData, "data");
+
+  // const dispatch = useDispatch();
+
+  // const editCarDataHandle = (index) => {
+  //   console.log(index, "ide");
+  //   dispatch({ type: UPDATE_CARS_DETAILS, id: index });
+  //   // const carData = { ...this.state.carsList[index] };
+
+  //   // this.setState({
+  //   //   carData,
+  //   //   selectedIndex: index,
+  //   //   isEdit: true,
+  //   // });
+  // };
+
+  // const deleteCarDataHandle = (index) => {
+  //   dispatch({ type: DELETE_CARS_DETAILS, id: index });
+
+  //   // const carsList = [...this.state.carsList];
+  //   // carsList.splice(index, 1);
+  //   // this.setState({
+  //   //   carsList,
+  //   // });
+  // };
 
   return (
     <div className="form-data-table">
@@ -36,22 +61,10 @@ export default function Table(props) {
               <td>{car.featureList.join(", ")}</td>
               <td>{car.carOverview}</td>
               <td>
-                <button
-                  type="button"
-                  onClick={() => {
-                    props.editCarDataHandle(index);
-                  }}
-                >
-                  <NavLink to="/form/edit">Edit</NavLink>
+                <button type="button">
+                  <NavLink to={`/form/edit/${index}`}>Edit</NavLink>
                 </button>
-                <button
-                  type="button"
-                  onClick={() => {
-                    props.deleteCarDataHandle(index);
-                  }}
-                >
-                  <NavLink to="/table">Delete</NavLink>
-                </button>
+                <button type="button">Delete</button>
               </td>
             </tr>
           </tbody>

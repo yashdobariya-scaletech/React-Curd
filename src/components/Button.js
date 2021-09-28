@@ -11,7 +11,6 @@ export default function Button(props) {
         props.onSubmit(e);
       }}
     >
-      {" "}
       <NavLink to="/table">Submit</NavLink>
     </button>
   );
@@ -20,10 +19,10 @@ export default function Button(props) {
     <button
       value="Update"
       onClick={(e) => {
-        props.onSubmit(e);
+        props.onUpdate(e);
       }}
     >
-      Update
+      <NavLink to="/table">Update</NavLink>
     </button>
   );
 
