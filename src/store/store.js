@@ -23,10 +23,10 @@ const crudActionReducer = (state = initialState, action) => {
       // const index = state.carsList.findIndex((car) => car.id === action.id);
       // const carsList = [...state.carsList];
       // carsList[index] = action.carDatas;
-
+      console.log();
       return {
         ...state,
-        carsList: [action.carsList],
+        carsList: action.carsList,
       };
     case DELETE_CARS_DETAILS:
       return {};

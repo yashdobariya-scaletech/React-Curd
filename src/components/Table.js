@@ -5,7 +5,7 @@ import { NavLink } from "react-router-dom";
 
 export default function Table() {
   const carsData = useSelector((state) => state);
-  console.log(carsData, "data");
+  console.log(carsData.carsList, "data");
 
   // const dispatch = useDispatch();
 
