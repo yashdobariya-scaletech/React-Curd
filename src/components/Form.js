@@ -7,6 +7,7 @@ import RadioButton from "./RadioButton";
 import CheckboxInput from "./CheckboxInput";
 import Textarea from "./Textarea";
 import Button from "./Button";
+import { NavLink } from "react-router-dom";
 
 class Form extends Component {
   constructor(props) {
@@ -138,10 +139,19 @@ class Form extends Component {
     });
   };
 
+  // backPageHandle = (e) => {
+  //   e.preventDefault();
+  //   this.props.history.goBack();
+  // };
+
   render() {
-    console.log(this.state.carData);
     return (
       <Fragment>
+        <div className="navigate-btn">
+          <button>
+            <NavLink to="/table">Go Back</NavLink>
+          </button>
+        </div>
         <div className="form-wrap">
           <form className="form">
             <div className="input-wrap">

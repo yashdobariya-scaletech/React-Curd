@@ -5,6 +5,17 @@
   top: 0;
 }
 
+.navigate-btn {
+  padding: 30px 80px;
+  text-align: right;
+  button {
+    padding: 10px 10px;
+    border: none;
+    font-size: 20px;
+    cursor: pointer;
+  }
+}
+
 .form-wrap {
   padding: 50px;
   margin: 0 auto;

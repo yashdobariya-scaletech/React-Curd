@@ -9,7 +9,7 @@ export default function App() {
     <div>
       <Header header="Car Management" />
       <Switch>
-        <Route path="/table" component={Table} />
+        <Route path="/table" exact component={Table} />
         <Route path="/form/add" component={Form} />
         <Route path="/form/edit/:id" component={Form} />
         <Redirect to="/table" />
