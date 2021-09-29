@@ -1,0 +1,23 @@
+{
+  "files": {
+    "main.css": "/React-Curd-opration/static/css/main.ac919569.chunk.css",
+    "main.js": "/React-Curd-opration/static/js/main.93e98310.chunk.js",
+    "main.js.map": "/React-Curd-opration/static/js/main.93e98310.chunk.js.map",
+    "runtime-main.js": "/React-Curd-opration/static/js/runtime-main.7b06003a.js",
+    "runtime-main.js.map": "/React-Curd-opration/static/js/runtime-main.7b06003a.js.map",
+    "static/js/2.f9eb30ef.chunk.js": "/React-Curd-opration/static/js/2.f9eb30ef.chunk.js",
+    "static/js/2.f9eb30ef.chunk.js.map": "/React-Curd-opration/static/js/2.f9eb30ef.chunk.js.map",
+    "static/js/3.74e4a9fc.chunk.js": "/React-Curd-opration/static/js/3.74e4a9fc.chunk.js",
+    "static/js/3.74e4a9fc.chunk.js.map": "/React-Curd-opration/static/js/3.74e4a9fc.chunk.js.map",
+    "index.html": "/React-Curd-opration/index.html",
+    "static/css/main.ac919569.chunk.css.map": "/React-Curd-opration/static/css/main.ac919569.chunk.css.map",
+    "static/js/2.f9eb30ef.chunk.js.LICENSE.txt": "/React-Curd-opration/static/js/2.f9eb30ef.chunk.js.LICENSE.txt",
+    "static/media/app.scss": "/React-Curd-opration/static/media/Poppins-Regular.8081832f.ttf"
+  },
+  "entrypoints": [
+    "static/js/runtime-main.7b06003a.js",
+    "static/js/2.f9eb30ef.chunk.js",
+    "static/css/main.ac919569.chunk.css",
+    "static/js/main.93e98310.chunk.js"
+  ]
+}
