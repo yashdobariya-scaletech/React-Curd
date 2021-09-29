@@ -87,29 +87,6 @@ class Form extends Component {
     });
   };
 
-  // const editCarDataHandle = (index) => {
-  //   dispatch({ type: UPDATE_CARS_DETAILS });
-  //   const carData = { ...this.state.carsList[index] };
-  //   this.props.updateCarDetail(carData);
-
-  //   this.setState({
-  //     carData,
-  //     selectedIndex: index,
-  //     isEdit: true,
-  //   });
-  // };
-
-  // const deleteCarDataHandle = (index) => {
-  //   this.props.deleteCarDetail();
-  //   dispatch({ type: DELETE_CARS_DETAILS });
-
-  //   const carsList = [...this.state.carsList];
-  //   carsList.splice(index, 1);
-  //   this.setState({
-  //     carsList,
-  //   });
-  // };
-
   updateInputField = (fieldname, e) => {
     const carData = { ...this.state.carData };
     const target = e.target;
