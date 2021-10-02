@@ -126,7 +126,7 @@ class Form extends Component {
       <Fragment>
         <div className="navigate-btn">
           <button>
-            <NavLink to="/table">Go Back</NavLink>
+            <NavLink to="/table">Go Back To Table</NavLink>
           </button>
         </div>
         <div className="form-wrap">
