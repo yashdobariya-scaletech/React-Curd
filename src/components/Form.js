@@ -67,11 +67,16 @@ class Form extends Component {
   updateHandle = (e) => {
     e.preventDefault();
     const carData = { ...this.state.carData };
-    console.log(carData, "cardata");
     const carsList = this.props.carsList;
     carsList[this.props.match.params.id] = carData;
-    console.log(carsList, "carsList");
     this.props.updateCarDetail(carsList);
+  };
+
+  deleteHandle = (e) => {
+    e.preventDefault();
+    const carsList = this.props.carsList;
+    carsList.splice(this.props.match.params.id, 1);
+    this.props.deleteCarDetail(carsList);
   };
 
   resetHandle = () => {
@@ -115,11 +120,6 @@ class Form extends Component {
       carData,
     });
   };
-
-  // backPageHandle = (e) => {
-  //   e.preventDefault();
-  //   this.props.history.goBack();
-  // };
 
   render() {
     return (
@@ -230,6 +230,8 @@ const DispatchProps = (dispatch) => {
   return {
     addCarDetail: (data) => dispatch({ type: ADD_CARS_DETAILS, carData: data }),
     updateCarDetail: (data) =>
+      dispatch({ type: UPDATE_CARS_DETAILS, carsList: data }),
+    deleteCarDetail: (data) =>
       dispatch({ type: UPDATE_CARS_DETAILS, carsList: data }),
   };
 };

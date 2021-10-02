@@ -25,8 +25,10 @@ const crudActionReducer = (state = initialState, action) => {
         carsList: action.carsList,
       };
     case DELETE_CARS_DETAILS:
-      return {};
-
+      return {
+        ...state,
+        carsList: action.carsList,
+      };
     default:
       return state;
   }
